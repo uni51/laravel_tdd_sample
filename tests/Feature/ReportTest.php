@@ -2,12 +2,23 @@
 
 namespace Tests\Feature;
 
+use App\Customer;
+use App\Report;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class reportTest extends TestCase
+class ReportTest extends TestCase
 {
+
+    use RefreshDatabase;
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->artisan('db:seed', ['--class' => 'TestDataSeeder']);
+    }
+
     /**
      * @test
      */
