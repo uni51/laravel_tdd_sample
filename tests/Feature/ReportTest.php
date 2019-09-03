@@ -33,6 +33,15 @@ class ReportTest extends TestCase
     /**
      * @test
      */
+    public function api_customersにGETメソッドでアクセスするとJSONが返却される()
+    {
+        $response = $this->get('api/customers');
+        $this->assertThat($response->content(), $this->isJson());
+    }
+
+    /**
+     * @test
+     */
     public function api_customersにPOSTメソッドでアクセスできる()
     {
         $response = $this->post('api/customers');
