@@ -86,6 +86,26 @@ class ReportTest extends TestCase
     /**
      * @test
      */
+    public function POST_api_customersにnameが含まれない場合、422UnprocessbleEntityが返却される()
+    {
+        $params = [];
+        $response = $this->postJson('api/customers', $params);
+        $response->assertStatus(\Illuminate\Http\Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /**
+     * @test
+     */
+    public function POST_api_customersにnameが空の場合、422UnprocessbleEntityが返却される()
+    {
+        $params = ['name' => ''];
+        $response = $this->postJson('api/customers', $params);
+        $response->assertStatus(\Illuminate\Http\Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /**
+     * @test
+     */
     public function api_customers_idにGETメソッドでアクセスできる()
     {
         $response = $this->get('api/customers/1');
