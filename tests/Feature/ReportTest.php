@@ -53,6 +53,15 @@ class ReportTest extends TestCase
     /**
      * @test
      */
+    public function api_customersにGETメソッドでアクセスすると2件の顧客リストが返却される()
+    {
+        $response = $this->get('api/customers');
+        $response->assertJsonCount(2);
+    }
+
+    /**
+     * @test
+     */
     public function api_customersにPOSTメソッドでアクセスできる()
     {
         $response = $this->post('api/customers');
