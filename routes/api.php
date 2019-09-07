@@ -13,7 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('customers', function(){});
+Route::get('customers', function(){
+    return response()->json(\App\Customer::query()->get());
+});
 Route::post('customers', function(){});
 Route::get('customers/{customer_id}', function(){});
 Route::put('customers/{customer_id}', function(){});
