@@ -42,6 +42,17 @@ class ReportTest extends TestCase
     /**
      * @test
      */
+    public function api_customersにGETメソッドで取得できる顧客リストのJSON形式は要件通りである()
+    {
+        $response = $this->get('api/customers');
+        $customers = $response->json();
+        $customer = $customers[0];
+        $this->assertSame(['id','name'], array_keys($customer));
+    }
+
+    /**
+     * @test
+     */
     public function api_customersにPOSTメソッドでアクセスできる()
     {
         $response = $this->post('api/customers');
