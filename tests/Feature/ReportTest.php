@@ -64,8 +64,23 @@ class ReportTest extends TestCase
      */
     public function api_customersにPOSTメソッドでアクセスできる()
     {
-        $response = $this->post('api/customers');
+        $customer = [
+            'name' => 'customer_name',
+        ];
+        $response = $this->postJson('api/customers', $customer);
         $response->assertStatus(200);
+    }
+
+    /**
+     * @test
+     */
+    public function api_customersに顧客名をPOSTするとcustomersテーブルにそのデータが追加される()
+    {
+        $params = [
+            'name' => '顧客名',
+        ];
+        $this->postJson('api/customers', $params);
+        $this->assertDatabaseHas('customers', $params);
     }
 
     /**
