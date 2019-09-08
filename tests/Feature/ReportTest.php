@@ -106,6 +106,24 @@ class ReportTest extends TestCase
     /**
      * @test
      */
+    public function POST_api_customersのエラーレスポンスの確認()
+    {
+        $params = ['name' => ''];
+        $response = $this->postJson('api/customers', $params);
+        $error_response = [
+            'message' => "The given data was invalid.",
+            'errors' => [
+                'name' => [
+                    'name は必須項目です'
+                ],
+            ]
+        ];
+        $response->assertExactJson($error_response);
+    }
+
+    /**
+     * @test
+     */
     public function api_customers_idにGETメソッドでアクセスできる()
     {
         $response = $this->get('api/customers/1');
